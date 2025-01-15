@@ -1,0 +1,54 @@
+Jenkin Mavenjava pipeline
+for BUILD;
+new item, freestyle, git repo http (public), */main, buildsteps (invoke top level - MAVEN_HOME, clean, install), post build (archive the artifacts- **/*, build other projects - m1_test)
+now for TEST;
+ none, delete workspace before buildsteps, buildsteps (copy artifacts from other project - m1_build, stable only, **/*, invoke top level maven projects, test), post build (archive the artifacts - **/*)  
+for PIPELINE;
++, m1_pipeline, build pipeline view, m1_build (upstream/downstream)
+-------------------------------------------
+Jenkin MavenWeb pipeline
+for BUILD; 
+new item, freestyle, git repo, master, poll SCM (***** - every one minute), same (no delete workspace)
+for TEST;
+same like before + post build (build other- m2_deploy)
+for DEPLOY;
+new item , freestyle, delete workspace, add buildsteps (copy artifacts m2_test, **/*), post buildaction (deploy war/ear - **/*.war, m2mavenpath,container - tomcatv9, add Jenkins, admin , 1234, tomcat url - 8083)
+------------------------------------------
+servlet 2.5 || java 21
+------------------------------------------
+pipeline {
+ agent any
+ tools {
+ maven 'MAVEN_HOME'
+ }
+ stages {
+ stage('git repo & clean') {
+ steps {
+ bat """
+    if exist "Maven_project" (
+        rmdir /s /q "Maven_project"
+    )
+    """
+ bat "git clone https://github.com/Nikhil-tejj/Maven_project.git"
+ bat "mvn clean -f Maven_project"
+ }
+ }
+ stage('install') {
+ steps {
+ bat "mvn install -f Maven_project"
+ }
+ }
+ stage('test') {
+ steps {
+ bat "mvn test -f Maven_project"
+ }
+ }
+ stage('package') {
+ steps {
+ bat "mvn package -f Maven_project"
+ }
+ }
+ }
+}---------------------------------------
+Declarative pipeline
+new item, pipeline, script paste above one, apply save

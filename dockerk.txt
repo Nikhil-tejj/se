@@ -1,0 +1,57 @@
+docker --version
+docker login
+docker pull imagename
+docker images
+docker ps -a(all)|(presentk)
+docker run imagename, docker run --name newredis(cn) -d redis(img) (creates a container runs an image)
+docker rm status(containerId)
+docker rmi imagename
+docker exec -it newredis redis-cli -(SET name "", GET name,exit)
+docker stop containerId, rm, rmi redis
+-------------------------------------------
+create a docker file [from redis:latest .. cmd ["redis-server"]]
+docker build -t myredis .  (creates a docker image )
+docker run --name newmyredis -d myredis (container)
+docker stop containerid 
+docker commit containerID dockkr/redisnewimage (saving created img to local docker desktop)
+docker login
+docker push dockkr/redisnewimage (now push to remote repo hub)
+now remove from term and pull it from hub
+docker rm,rmi
+docker pull dockkr/redisnewimage (pulled,now can run using run)
+--------------------------------------------
+docker pull ubuntu
+docker run -it --name newubuntu -d ubuntu
+docker exec -it containerID bash 
+(git --version, apt update,apt install git -y)
+docker stop containerID
+docker commit containerID dockkr/ubuntu2
+docker login
+docker push dockkr/ubuntu2
+docker rm , rmi
+docker logout
+docker pull dockkr/ubuntu2
+----------------------------------------
+create a new folder with cal.js file and docker file
+Docker file
+{
+FROM node:16-alphine
+WORKDIR /app
+COPY cal.js /app
+CMD ["node","cal.js"]
+}
+go to directory,
+docker build -t simplecal .
+docker run simplecal
+docker ps, docker login
+docker tag simplecal dockkr/simplecal
+docker push dockkr/simplecal
+--------------------------------------------
+Run multiple containers
+go to directory of yaml file
+docker-compose up -d
+go to browser localhost:8000
+docker-compose stop
+docker-compose start
+docker-compose down
+-------------------------------------------

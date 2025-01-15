@@ -1,0 +1,24 @@
+git --version
+git config --global user.name ""
+git config --global user.email ""
+git init, status, add ., commit -m "", 
+git diff (diff btw prev and cur commits)
+git help <command>
+git reset (takes from staging area back to workdir)
+git restore (restores workdir from git)
+git branch name, -d name, -a, checkout name, checkout -b name
+git merge other_branch_name
+git log, git log --oneline
+git revert (repo to staging)
+---------------------------------------------
+git remote add origin http  
+<--->
+git init, git add readme.md, git commit -m "commit"
+git branch -M main, git remote add origin http
+git push -u origin main
+<--->
+git remote -v (tells what is done)
+SSH key connection-> 
+ssh-keygen -t rsa -C n4@gmail.com, open .ssh file and cpy key, open github-> ssh&gps keys -> new ssh keys -> paste on key text box -> click on add ssh key
+
+git push origin main , pull origin master (ssh)

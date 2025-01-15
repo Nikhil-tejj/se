@@ -1,0 +1,18 @@
+Nagios
+docker pull jsonrivers/nagios:latest
+docker run --name nagiosdemo -p 8888:80 jsonrivers/nagios:latest
+open browser at 8888, (nagiosadmin, nagios)-> dashboard
+host, localhost, 
+open one more powershell
+docker ps
+docker stop contname, refresh
+docker rm , rmi
+------------------------------------
+aws account creation
+mail -> creat acc, login pass time checkbox register
+aws learner academy portal (aws academy login)
+aws academy learner lab, launch , i agree, start lab(green), aws->console, ec2 (all options), end lab
+------------------------------------------
+FROM nginx:alpine
+COPY . /usr/share/nginx/html
+docker run -d -p 80:80 containername
