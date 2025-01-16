@@ -15,4 +15,8 @@ aws academy learner lab, launch , i agree, start lab(green), aws->console, ec2 (
 ------------------------------------------
 FROM nginx:alpine
 COPY . /usr/share/nginx/html
+docker build -t img .
 docker run -d -p 80:80 containername
+
+FROM tomcat:9-jdk-21
+COPY target/*.war /usr/local/tomcat/webapps/
